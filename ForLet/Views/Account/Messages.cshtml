@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title mt-2">
+            <h2>Your Messages</h2>
+            <p>Below is the list of recent messages.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-8 mt-5 mt-lg-0">
+                    
+            </div>
+
+            <partial name="_sidebarPartial" />
+
+        </div>
+    </div>
+</section><!-- End Contact Section -->
+
+@section Scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

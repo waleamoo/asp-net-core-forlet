@@ -1,0 +1,126 @@
+﻿@model AppUser
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title mt-2">
+            <h2>Edit Profile </h2>
+            <p>Welcome to your profile area.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mt-5 mt-lg-0">
+                <partial name="_NotificationPartial" />
+                <div class="col-md-12 my-2">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form asp-controller="Account" asp-action="Profile"  method="post" enctype="multipart/form-data">
+                                <div class="content">
+                                    <div class="text-center">
+
+                                        @ViewBag.Profile
+
+                                        <div><img src="~/Media/Users/@(Model.Avatar == null ? "noimage.jpg" : Model.Avatar)" width="200" height="200" id="avatarUpload" style="border-radius: 50%;" /></div>
+                                        <div><input asp-for="ProfileImage" class="form-control-sm w-50" /></div>
+                                    </div>
+                                    <p><b>First Name:</b> @Model.FirstName</p>
+                                    <p><b>Last Name:</b> @Model.LastName</p>
+                                    <p><b>Email:</b> @(Model.Email == null ? "Email not set" : Model.Email)</p>
+                                    <p><b>Address:</b> @Model.Address</p>
+                                    <p><b>Phone Number:</b> @Model.PhoneNumber</p>
+                                </div>
+
+                                <hr />
+
+
+                                <h3 class="text-muted">Update your profile</h3>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="FirstName" />
+
+                                <div class="form-group">
+                                    <label asp-for="LastName" class="control-label"></label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="addresss">Address</label>
+                                    <div class="form-row">
+                                        <div class="col-2">
+                                            <input type="text" asp-for="HouseNumber" class="form-control form-control-sm" placeholder="No (e.g. 5)" maxlength="4" inputmode="numeric" required>
+                                            <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" asp-for="StreetName" class="form-control form-control-sm" placeholder="Street Name (e.g. Aguda Street)" maxlength="40" required>
+                                            <span asp-validation-for="StreetName" class="text-danger"></span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" asp-for="AreaName" class="form-control form-control-sm" placeholder="Name of Area (e.g. Aguda, Surulere)" maxlength="40" required>
+                                            <span asp-validation-for="AreaName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mt-2">
+                                        <div class="col">
+                                            <select class="form-control dynamic-state form-control-sm" asp-for="StateId" asp-items="ViewBag.states" data-dependent="LgaId" required>
+                                                <option>Select State</option>
+                                            </select>
+                                            <span asp-validation-for="StateId" class="text-danger"></span>
+                                        </div>
+                                        <div class="col">
+                                            <select class="form-control form-control-sm" asp-for="LgaId" required>
+                                            </select>
+                                            <span asp-validation-for="LgaId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber" class="control-label"></label>
+                                    <input asp-for="PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input asp-for="Password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                                    <input asp-for="ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Update Profile" class="btn btn-primary" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_sidebarPartial" />
+
+        </div>
+
+    </div>
+</section><!-- End Contact Section -->
+
+@section Scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,74 @@
+﻿@model Rental
+
+@{
+    ViewData["Title"] = "Rental Details";
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title mt-2">
+            <h2>@Model.Title</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mt-5 mt-lg-0">
+                <partial name="_NotificationPartial" />
+                <div class="col-md-12 my-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="content">
+                                <h2 class="card-title">@Model.Title</h2>
+                                <div class="content">
+                                    <b>Description: </b>@Model.RentalDescription <br /> <br />
+                                    <b>Address: </b> No @Model.RentalAddress <br /> <br />
+                                    <b>No of Apartment: </b> No @Model.NoOfApartment <br /> <br />
+                                    <b>Rent: </b> NGN @Model.Rent <br /> <br />
+                                    <b>Agreement: </b>@(Model.Agreement == decimal.Parse("0.00") ? "N/A" : "NGN" + Model.Agreement) <br /> <br />
+                                    <b>Damages: </b>@(Model.Damages == decimal.Parse("0.00") ? "N/A" : "NGN" + Model.Damages)  <br /> <br />
+                                    <b>Date Posted: </b>@Model.DatePosted  <br /> <br />
+                                    <b>Show Contact Details: </b> <span><a href="tel:@Model.Client.PhoneNumber">Call Owner <i class="bx bx-phone-call"></i>  </a></span><br /> <br />
+
+                                    <div class="row">
+                                        @for (int i = 0; i < Model.image.Count(); i++)
+                                        {
+                                            <div class="card" style="width: 16rem;">
+                                                <img src="~/Media/Rentals/@Model.image[i].ImageLocation" class="img-fluid img-thumbnail" alt="house image" />
+                                                <div class="card-footer">
+                                                    <div class="row">
+                                                        <div class="col-6 text-left">
+                                                            @*<a href="#">Change</a>*@
+                                                        </div>
+
+                                                        <div class="col-6 text-right">
+                                                            <a asp-controller="Account" asp-action="DeleteImage" asp-route-name="@Model.image[i].ImageLocation">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <br />
+
+                                    <div class="row">
+                                        <div class="col-6 text-left">
+                                            <input type="checkbox" class="form-check-inline" id="rented" name="rented">
+                                            <label for="rented" class="text-muted text-sm-left">Mark as rented</label>
+                                        </div>
+
+                                        <div class="col-6 text-right">
+                                            <a asp-controller="Home" asp-action="ReportAd" asp-route-id="@Model.Id" class="text-muted text-sm-right" style="text-decoration:none; color:#eee;">Report this Ad</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_sidebarPartial" />
+        </div>
+    </div>
+</section>

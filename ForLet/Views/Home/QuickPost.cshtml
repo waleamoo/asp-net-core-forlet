@@ -1,0 +1,220 @@
+﻿@model RentalViewModel
+
+@{
+    ViewData["Title"] = "Quick Post";
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title mt-2">
+            <h2>Quick Post</h2>
+            <p>Skip registrations and quickly post your rental ad.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mt-5 mt-lg-0">
+                <partial name="_NotificationPartial" />
+                <div class="col-md-12 my-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <form asp-controller="Home" asp-action="CreatePost" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <fieldset>
+                                    <legend>Renter Information</legend>
+
+                                    <div class="form-group">
+                                        <label for="">Your Phone Number</label>
+                                        <input type="text" asp-for="PhoneNumber" class="form-control form-control-sm" placeholder="Your Phone Number">
+                                        <small class="form-text text-muted">Phone number tenants can reach you on.</small>
+                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Your Full Name</label>
+                                        <input type="text" asp-for="FullName" class="form-control form-control-sm" placeholder="Your Full Name (e.g. Ciroma Chukwudi)">
+                                        <span asp-validation-for="FullName" class="text-danger"></span>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="email">Your Email (Optional)</label>
+                                        <input type="email" class="form-control form-control-sm" asp-for="Email" placeholder="Email (e.g. hello@xyz.com)">
+                                        <small class="form-text text-muted">
+                                            Your email will not be shared. <br /> Why we need your email? <br />
+                                            - all communication with ForLet is via email, no SMS. <br />
+                                            - you get notified when your ad is deleted(marked as rented) by any forlet user.
+                                        </small>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+
+
+                                <fieldset>
+                                    <legend>Property Description</legend>
+                                    <div class="form-group">
+                                        <label asp-for="PropertyTypeId">Select Property Type</label>
+                                        <select class="form-control form-control-sm" asp-for="PropertyTypeId" asp-items="ViewBag.propertyTypes">
+                                            <option value="0">Select a Property Type</option>
+                                        </select>
+                                        <span asp-validation-for="PropertyTypeId" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="NoOfApartment">Number of Occupants/Apartments</label>
+                                        <input type="text" class="form-control form-control-sm" asp-for="NoOfApartment" placeholder="Number of Occupants (e.g. 4)">
+                                        <span asp-validation-for="NoOfApartment" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="addresss">Property Address</label>
+                                        <div class="form-row">
+                                            <div class="col-2">
+                                                <input type="text" asp-for="HouseNumber" class="form-control form-control-sm" placeholder="No (e.g. 5)" maxlength="4" inputmode="numeric" required>
+                                                <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" asp-for="StreetName" class="form-control form-control-sm" placeholder="Street Name (e.g. Aguda Street)" maxlength="40" required>
+                                                <span asp-validation-for="StreetName" class="text-danger"></span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" asp-for="AreaName" class="form-control form-control-sm" placeholder="Name of Area (e.g. Aguda, Surulere)" maxlength="40" required>
+                                                <span asp-validation-for="AreaName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-row mt-2">
+                                            <div class="col">
+                                                <select class="form-control dynamic-state form-control-sm" asp-for="StateId" asp-items="ViewBag.states" data-dependent="LgaId" required>
+                                                    <option>Select State</option>
+                                                </select>
+                                                <span asp-validation-for="StateId" class="text-danger"></span>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-control form-control-sm" asp-for="LgaId" required>
+                                                </select>
+                                                <span asp-validation-for="LgaId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Property Features</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" name="features" id="tap-water" value="Tap Water">
+                                        <label class="form-check-label mr-4" for="tap-water">Tap Water/Borehole</label>
+
+                                        <input type="checkbox" class="form-check-input" name="features" id="well-water" value="Tap Water">
+                                        <label class="form-check-label mr-4" for="well-water">Well Water</label>
+
+                                        <input type="checkbox" class="form-check-input" name="features" id="bathroom" value="Tap Water">
+                                        <label class="form-check-label mr-4" for="bathroom">Bathroom</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" name="features" id="kitchen" value="Tap Water">
+                                        <label class="form-check-label mr-4" for="kitchen">Kitchen</label>
+
+                                        <input type="checkbox" class="form-check-input" name="features" id="toilet" value="Tap Water">
+                                        <label class="form-check-label mr-4" for="toilet">Toilet</label>
+
+                                        <input type="checkbox" class="form-check-input" name="features" id="security" value="Tap Water">
+                                        <label class="form-check-label mr-4" for="security">Security</label>
+                                    </div>
+                                    <br><br>
+                                </fieldset>
+
+                                <br>
+
+                                <fieldset>
+                                    <legend>Picture </legend>
+                                    <div class="form-group">
+                                        <label for="rent">Front view of the property</label>
+                                        <input class="form-control" asp-for="ImageUpload">
+                                        <small id="helpId" class="form-text text-muted">Upload a picture of the house. Example given below</small>
+                                        <br>
+                                        <div>
+                                            <img src="~/assets/img/house-front.jpg" id="imgUpload" class="img-fluid img-thumbnail" alt="Image Upload Preview">
+                                        </div>
+                                        <span asp-validation-for="ImageUpload" class="text-danger"></span>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Payment</legend>
+
+                                    <div class="form-group">
+                                        <label asp-for="Rent">Rent</label>
+                                        <input type="text" class="form-control form-control-sm" asp-for="Rent" placeholder="Rent per year" maxlength="10">
+                                        <small class="form-text text-muted">Rent is usually per year</small>
+                                        <span asp-validation-for="Rent" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Is there an agreement fee?</label>
+                                        <select class="form-control form-control-sm" id="agreement-select">
+                                            <option>Select an aswer</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        <br>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Amount (e.g. 30000)" asp-for="Agreement">
+                                        <span asp-validation-for="Agreement" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Is there a fee for damages?</label>
+                                        <select class="form-control form-control-sm" id="damages-select">
+                                            <option value="">Select an answer</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        <br>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Amount (e.g. 30000)" asp-for="Damages">
+                                        <span asp-validation-for="Damages" class="text-danger"></span>
+                                    </div>
+
+                                </fieldset>
+                                <button type="submit" class="btn-get-started btn-lg">Submit Rental</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info">
+                    <div class="address">
+                        <i class="icofont-google-map"></i>
+                        <h4>Advert Here:</h4>
+                        <p>A108 Adam Street, New York, NY 535022</p>
+                    </div>
+
+                    <div class="email">
+                        <i class="icofont-envelope"></i>
+                        <h4>Advertize Here:</h4>
+                        <p>info@example.com</p>
+                    </div>
+
+                    <div class="phone">
+                        <i class="icofont-phone"></i>
+                        <h4>Avertize here:</h4>
+                        <p>+1 5589 55488 55s</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Contact Section -->
+
+@section Scripts 
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

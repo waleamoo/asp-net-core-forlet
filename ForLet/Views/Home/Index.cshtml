@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <h1>Search over 2,567 rentals</h1>
+                <h2>Your new home is a search away</h2>
+                <br />
+                <form asp-action="Rentals">
+                    <table>
+                        <tr>
+                            <td class="p-2">
+                                <div class="form-group">
+                                    <label for="stateName">Select State</label>
+                                    <select id="stateId" name="stateId" class="form-control form-control-sm dynamic-state" data-dependent="lga" asp-items="ViewBag.states">
+                                        <option value="0">Any state</option>
+                                    </select>
+                                    <small id="helpId" class="text-muted">Select your preferred state</small>
+                                </div>
+                            </td>
+
+                            <td class="p-2">
+                                <div class="form-group">
+                                    <label for="lga">Select L.G.A</label>
+                                    <select id="lga" name="lga" class="form-control form-control-sm">
+                                        <option value="0">Any L.G.A</option>
+
+                                    </select>
+                                    <small id="helpId" class="text-muted">Select your preferred area</small>
+                                </div>
+                            </td>
+
+                            <td class="p-2">
+                                <div class="form-group">
+                                    <label for="state">Property Type</label>
+                                    <select class="form-control form-control-sm" name="propertyTypeId" id="propertyTypeId" asp-items="ViewBag.propertyTypes">
+                                        <option value="0">Any type</option>
+                                    </select>
+                                    <small id="helpId" class="text-muted">Select your property type</small>
+                                </div>
+                            </td>
+
+                            <td class="p-2">
+                                <div class="form-group">
+                                    <label for="price">Price Range</label>
+                                    <select class="form-control form-control-sm" id="price" name="price">
+                                        <option value="0">Any amount</option>
+                                        <option value="50000">₦50,000 and Above</option>
+                                        <option value="100000">₦100,000 and Above</option>
+                                        <option value="200000">₦200,000 and Above</option>
+                                        <option value="300000">₦300,000 and above</option>
+                                    </select>
+                                    <small id="helpId" class="text-muted">Select any for all prices</small>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-left">
+                                <button class="btn-get-started scrollto" type="submit"> Search Rentals <i class="icofont-search"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <br />
+            </div>
+        </div>
+        
+        <hr />
+
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <h1>Get a New Home</h1>
+                <p>Searching for an accomodation should be easy, you can do that in three easy steps.</p>
+            </div>
+        </div>
+
+        <div class="row icon-boxes justify-content-center">
+
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-1 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
+                <div class="icon-box">
+                    <div class="icon"><i class="ri-search-line"></i></div>
+                    <h4 class="title"><a href="">Search a Property</a></h4>
+                    <p class="description">Search your preferred type of property from our list of rentals and make a decision.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-1 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+                <div class="icon-box">
+                    <div class="icon"><i class="ri-eye-line"></i></div>
+                    <h4 class="title"><a href="">Go For Viewing, Meet Agent</a></h4>
+                    <p class="description">
+                        Now that you have made a decision on your preferred property. Go view the
+                        property, meet with the
+                        property agent, manager, landlord or landlady.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-1 mb-lg-0" data-aos="zoom-in" data-aos-delay="500">
+                <div class="icon-box">
+                    <div class="icon"><i class="ri-secure-payment-line"></i></div>
+                    <h4 class="title"><a href="">Make a payment, secure your rent</a></h4>
+                    <p class="description">
+                        After a making a deal, make a payment. This should secure your rent. Mark
+                        your rental ad as
+                        rented to it from ForLet list.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

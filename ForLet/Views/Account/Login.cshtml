@@ -1,0 +1,59 @@
+﻿@model Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title mt-2">
+            <h2>Login</h2>
+            <p>Provide your credentials at registration to login. <a asp-controller="Account" asp-action="Register">Register here.</a></p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mt-5 mt-lg-0">
+                <partial name="_NotificationPartial" />
+                <div class="col-md-12 my-2">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form asp-action="Login">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber" class="control-label"></label>
+                                    <input asp-for="PhoneNumber" class="form-control form-control-sm" placeholder="Phone Number" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input asp-for="Password" class="form-control form-control-sm" placeholder="Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="submit" value="Login" class="btn btn-primary" />
+                                </div>
+                            </form>
+
+                            <hr />
+                            <p><a asp-controller="Account" asp-action="Register">Not yet registered. Register here</a> </p>
+                            <p><a asp-controller="Account" asp-action="ForgotPassword">Forgot Password? Click here to reset</a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_sidebarPartial" />
+
+        </div>
+
+    </div>
+</section><!-- End Contact Section -->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

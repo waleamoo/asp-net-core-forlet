@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForLet", "ForLet\ForLet.csproj", "{102E4D9A-D13C-4C74-BBD4-96678B50DBBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{102E4D9A-D13C-4C74-BBD4-96678B50DBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102E4D9A-D13C-4C74-BBD4-96678B50DBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102E4D9A-D13C-4C74-BBD4-96678B50DBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102E4D9A-D13C-4C74-BBD4-96678B50DBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A246590A-20DC-4B0A-84BE-CB4D565AD0CF}
+	EndGlobalSection
+EndGlobal

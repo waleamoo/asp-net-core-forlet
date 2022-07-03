@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Rental> 
+
+@{
+    ViewData["Title"] = "Result";
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        @if (Model.Count() > 0)
+        {
+            <div class="section-title mt-2">
+                <h2>Based on your selection</h2>
+                <p>These are the properties we could find.</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-8 mt-5 mt-lg-0">
+
+                    <div class="col-md-12 my-2">
+
+                        @foreach (var item in Model)
+                        {
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <a asp-controller="Home" asp-action="RentalDetails" asp-route-slug="@item.slug" class="card-title"><h2>@item.Title</h2></a>
+                                    <div class="content">
+                                        @item.RentalDescription <br /> <br />
+                                        <b>Address: </b> No @item.RentalAddress <br /> <br />
+                                        @if (item.image.Count() > 0)
+                                        {
+                                            <div>
+                                                <img src="~/Media/Rentals/@item.image[0].ImageLocation" class="img-fluid img-thumbnail" alt="house image" />
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                <img src="~/Media/Rentals/no-house.jpg" class="img-fluid img-thumbnail" alt="house image" />
+                                            </div>
+                                        }
+
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-6 text-left">
+                                                <label>
+                                                    <input type="checkbox" value="mark" /> Mark as rented
+                                                </label>
+                                            </div>
+
+                                            <div class="col-6 text-right">
+                                                <a asp-controller="Home" asp-action="ReportAd" asp-route-id="@item.Id">Report this ad.</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+
+
+                    <div class="d-flex w-100 justify-content-center">
+                        <pagination page-count="@ViewBag.TotalPages" page-target="/rentals" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></pagination>
+                    </div>
+
+
+                </div>
+
+                <partial name="_sidebarPartial" />
+
+            </div>
+        }
+        else
+        {
+            <div class="section-title mt-2">
+                <h2>Sorry, we could not find any rentals in your area. Try other areas.</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-8 mt-5 mt-lg-0">
+
+                    <div class="col-md-12 my-2">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <i class="ri-emotion-sad-line ri-10x"></i>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary btn-block" asp-controller="Account" asp-action="Rental">Add New Rental</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <partial name="_sidebarPartial" />
+
+            </div>
+        }
+
+
+
+    </div>
+</section><!-- End Contact Section -->
